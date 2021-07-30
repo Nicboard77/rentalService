@@ -47,7 +47,7 @@ public class CustomerController {
   public ResponseEntity<Customer> createNewCustomer(@RequestBody Customer newCustomer) {
     Customer customer = customerRepository.save(newCustomer);
     return new ResponseEntity<>(customer, HttpStatus.CREATED);
-  }s
+  }
   @GetMapping("/getCustomerById")
   public Customer getCustomerById(Integer id) {
     return customerRepository.getById(id);
