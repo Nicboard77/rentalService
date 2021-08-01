@@ -1,12 +1,12 @@
 package com.blorferind.contoller;
 
-import java.awt.PageAttributes.MediaType;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +28,9 @@ public class CustomerController {
   public List<Customer> getAll() {
     return customerRepository.findAll();
   }
-  @PutMapping("/updateCustomer/{id}")
+  
+  
+  @PutMapping(value = "/updateCustomer/{id}")
   public ResponseEntity<Object> updateCustomerById(@RequestBody Customer customer,
       @PathVariable Integer id) {
     Optional<Customer> studentOptional = customerRepository.findById(id);
@@ -38,18 +40,31 @@ public class CustomerController {
     customerRepository.save(customer);
     return ResponseEntity.noContent().build();
   }
+  
+  
   @PostMapping(value = "/load")
   public List<Customer> persist(@RequestBody final Customer customer) {
     customerRepository.save(customer);
     return customerRepository.findAll();
   }
+  
+  
   @PostMapping(value = "/createNewCustomer")
   public ResponseEntity<Customer> createNewCustomer(@RequestBody Customer newCustomer) {
     Customer customer = customerRepository.save(newCustomer);
     return new ResponseEntity<>(customer, HttpStatus.CREATED);
   }
-  @GetMapping("/getCustomerById")
+  
+  
+  @GetMapping(value = "/getCustomerById")
   public Customer getCustomerById(Integer id) {
     return customerRepository.getById(id);
+  }
+  
+  
+  @DeleteMapping("/deleteCustomerById")
+  public ResponseEntity<Integer> deleteCustomerById (Integer id) {
+    customerRepository.deleteById(id);
+    return new ResponseEntity<>(id, HttpStatus.OK);
   }
 }

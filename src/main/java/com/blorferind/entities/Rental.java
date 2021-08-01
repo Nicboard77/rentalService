@@ -18,18 +18,25 @@ import lombok.Setter;
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Rental {
+  
+  
+  
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "")
-  private int rentalId;
+  private Integer rentalId;
   @Column(name = "")
-  private int totalRentalCost;
+  private Integer totalRentalCost;
   @Column(name = "")
-  private int customerId;
+  private Integer customerId;
+  @Column(name = "", nullable = true)
+  private Integer carId;
+  @Column(name = "", nullable = true)
+  private Integer atvId;
+  @Column(name = "", nullable = true)
+  private Integer raftId;
   @Column(name = "")
-  private int carId;
-  @Column(name = "")
-  private int rentalLengthInDays;
+  private Integer rentalLengthInDays;
   @Column(name = "")
   private String startDate;
   @Column(name = "")

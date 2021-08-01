@@ -31,6 +31,6 @@ public class Customer {
   private String phone;
   @Column(name = "email")
   private String email;
-  @Column(name = "billing_address")
+  @Column(name = "billing_address", nullable = true)
   private String billingAddress;
 }

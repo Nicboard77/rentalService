@@ -34,5 +34,7 @@ public class Car {
   private boolean fourWheelDrive;
   @Column(name = "rental_cost")
   private int rentalCost;
+  @Column(name = "car_year")
+  private int carYear;
 
 }
